@@ -1,11 +1,18 @@
 import os
 
-from flask import Flask, render_template, request, redirect, flash, abort, send_file
+from flask import Flask, render_template, request, redirect, flash, abort, send_file, url_for
 from werkzeug.utils import safe_join
 import datetime
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import DataRequired, Email
+
+EMAIL_USER = os.getenv("EMAIL_USER")
+EMAIL_PASS = os.getenv("EMAIL_PASS")
+
 
 # ✅ Your project data (you can add more later)
 projects_data = {
@@ -84,49 +91,68 @@ def services():
 def projects():
     return render_template("projects.html", projects=projects_data)
 
+class ContactForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    message = TextAreaField("Message", validators=[DataRequired()])
+    subject = StringField("Subject", validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    form = ContactForm()
+    return render_template("contact.html", form=form)
+
 
 @app.route('/send_email', methods=['POST'])
 def send_email():
-    name = request.form['name']
-    email = request.form['email']
-    subject = request.form['subject']
-    message = request.form['message']
+    form = ContactForm()
 
-    sender_email = email
-    receiver_email = "enyionyinyegrace11@gmail.com"
-    password = "gtrd dilz rzap zcbc"
+    if form.validate_on_submit():
+        name = form.name.data
+        email = form.email.data
+        subject = request.form.get("subject")
+        message = form.message.data
 
-    try:
-        msg = MIMEMultipart()
-        msg['From'] = sender_email
-        msg['To'] = receiver_email
-        msg['Subject'] = f"New Contact Form Message: {subject}"
+        # Basic validation
+        if not name or not email or not subject or not message:
+            flash("All fields are required.", "danger")
+            return redirect(url_for("contact"))
 
-        body = f"""
-        Name: {name}
-        Email: {email}
-        Message:
-        {message}
-        """
-        msg.attach(MIMEText(body, 'plain'))
+        try:
+            msg = MIMEMultipart()
+            msg['From'] = EMAIL_USER
+            msg['To'] = EMAIL_USER
+            msg['Subject'] = f"New Contact Message From {name}"
 
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(sender_email, password)
-        server.send_message(msg)
-        server.quit()
+            body = f"""
+New Contact Form Submission
 
-        flash("✅ Your message has been sent successfully!", "success")
-        return redirect('/contact')
+Name: {name}
+Email: {email}
+Message:
+{message}
+"""
+            msg.attach(MIMEText(body, 'plain'))
 
-    except Exception as e:
-        print(e)
-        flash("❌ There was an error sending your message. Please try again.", "danger")
-        return redirect('/contact')
+            # Gmail SMTP
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(EMAIL_USER, EMAIL_PASS)
+            server.send_message(msg)
+            server.quit()
+
+            flash("✅ Message sent successfully!", "success")
+            return redirect('/contact')
+
+        except Exception as e:
+            print("EMAIL ERROR:", e)
+            flash("❌ Email sending failed. Try again.", "danger")
+            return redirect('/contact')
+
+    flash("❌ Form validation failed", "danger")
+    return redirect('/contact')
+
 
 @app.route("/project_view/<project_name>")
 def project_view(project_name):
