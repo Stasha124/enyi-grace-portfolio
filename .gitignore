@@ -2,11 +2,6 @@
 .env
 *.env
 
-# Ignore uploads (large files)
-uploads/
-*.accdb
-*.mdb
-
 # Ignore macOS system files
 .DS_Store
 **/.DS_Store
@@ -14,3 +9,4 @@ uploads/
 # Ignore Python cache
 __pycache__/
 *.pyc
+.env
