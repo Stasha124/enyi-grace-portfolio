@@ -121,7 +121,7 @@ def send_email():
 
         try:
             msg = MIMEMultipart()
-            msg['From'] = EMAIL_USER
+            msg['From'] = email
             msg['To'] = EMAIL_USER
             msg['Subject'] = f"New Contact Message From {name}"
 
