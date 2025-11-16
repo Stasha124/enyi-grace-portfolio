@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Projects | Enyi Grace{% endblock %}
+
+{% block content %}
+
+<!-- ✅ PROJECTS HERO -->
+<section class="projects-hero text-center text-white d-flex align-items-center justify-content-center">
+    <div class="overlay"></div>
+    <div class="content">
+        <h1 class="display-4 fw-bold">Real Projects, Real Impact</h1>
+        <p class="lead mt-3">Each project blends AI, automation, and full-stack intelligence — built to solve real-world problems.</p>
+    </div>
+</section>
+
+<!-- ✅ PROJECT SHOWCASE -->
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Featured Projects</h2>
+        <p class="text-muted">From AI platforms to data-driven systems — here’s a glimpse of my most relevant work.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- 🧠 MINDCARE PLATFORM -->
+        <div class="col-md-6 col-lg-4">
+            <div class="project-card h-100 tilt-card">
+                <img src="https://www.publicissapient.com/content/dam/ps-rebrand/insights/old-heros/building-an-enterprise-ai-platform.jpg.transform/psimg-1920/image.jpg"
+                     alt="MindCare AI Platform" class="project-img tilt-image" loading="lazy">
+                <div class="project-overlay">
+                    <h4>MindCare AI Platform</h4>
+                    <p>AI-powered mental health app featuring therapist booking, chat integration, and mood tracking using Flask, FastAPI & SQL.</p>
+                    <a href="{{ url_for('project_view', project_name='MindCare-AI-Platform') }}" class="btn btn-outline-light btn-sm">View Case Study</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🏪 RETAIL DISTRIBUTION SYSTEM -->
+        <div class="col-md-6 col-lg-4">
+            <div class="project-card h-100 tilt-card">
+                <img src="https://www.repsly.com/hs-fs/hubfs/Repsly%20Web/Blog%20and%20Email/Blog%20Graphics/Channels%20of%20Distribution.png?width=770&height=404&name=Channels%20of%20Distribution.png"
+                     alt="Retail & Distribution System" class="project-img tilt-image" loading="lazy">
+                <div class="project-overlay">
+                    <h4>Retail & Distribution System</h4>
+                    <p>Microsoft Access-based business management system with inventory tracking, customer data, and secure role-based access.</p>
+                    <a href="{{ url_for('project_view', project_name='Retail-Distribution-System') }}" class="btn btn-outline-light btn-sm">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ⚡ ELECTRIC WIRE DATABASE -->
+        <div class="col-md-6 col-lg-4">
+            <div class="project-card h-100 tilt-card">
+                <img src="https://dbschema.com/blog/design/steps-to-design-relational-schema/relational-database-schema-guide.png"
+                     alt="Electric Wire Company Database" class="project-img tilt-image" loading="lazy">
+                <div class="project-overlay">
+                    <h4>Electric Wire Company Database</h4>
+                    <p>SQL-based database system for managing production, import tracking, and multi-branch operations across Nigeria.</p>
+                    <a href="{{ url_for('project_view', project_name='Electric-Wire-Database') }}" class="btn btn-outline-light btn-sm">View Report</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🤖 AI CHAT INTEGRATION -->
+        <div class="col-md-6 col-lg-4">
+            <div class="project-card h-100 tilt-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiC3J5tk8SYaNPZQ94ASAZM8Ej44ePGEtkJQ&s"
+                     alt="AI Chat Integration" class="project-img tilt-image" loading="lazy">
+                <div class="project-overlay">
+                    <h4>AI Chat Integration</h4>
+                    <p>GPT-based AI chat assistant integrated into MindCare — providing real-time mental health support and smart conversations.</p>
+                    <a href="{{ url_for('project_view', project_name='AI-Chat-Integration') }}" class="btn btn-outline-light btn-sm">View Implementation</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🏋️‍♀️ GYMSHARK DIGITAL STRATEGY -->
+        <div class="col-md-6 col-lg-4">
+            <div class="project-card h-100 tilt-card">
+                <img src="https://miro.medium.com/v2/resize:fit:700/1*LNNJ9j73DFBuqT_zJn_wXQ.png"
+                     alt="Gymshark Digital Marketing Strategy" class="project-img tilt-image" loading="lazy">
+                <div class="project-overlay">
+                    <h4>Gymshark Digital Marketing Plan</h4>
+                    <p>Comprehensive marketing strategy integrating personalization, AI-powered recommendations, and community-driven campaigns.</p>
+                    <a href="{{ url_for('project_view', project_name='Gymshark-Digital-Strategy') }}" class="btn btn-outline-light btn-sm">View Marketing Plan</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📊 MEDIA TRUST ANALYTICS -->
+        <div class="col-md-6 col-lg-4">
+            <div class="project-card h-100 tilt-card">
+                <img src="https://mediatrust.org/wp-content/uploads/2023/11/MTF-intro-IG-390x390.png"
+                     alt="Media Trust Data Analytics Project" class="project-img tilt-image" loading="lazy">
+                <div class="project-overlay">
+                    <h4>Media Trust Data Analytics</h4>
+                    <p>Research-based analytics using Python, SQL & Tableau to uncover patterns in misinformation and public media trust.</p>
+                    <a href="{{ url_for('project_view', project_name='Media-Trust-Analytics') }}" class="btn btn-outline-light btn-sm">View Dashboard</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ✅ PROJECTS ANCHOR (Intro Section) -->
+<section id="projects" class="container py-5 text-center fade-in">
+  <h2 class="fw-bold mb-3">Featured Projects</h2>
+  <p class="text-muted mx-auto" style="max-width: 700px;">
+    Explore real-world AI, data analytics, and full-stack projects — built to transform raw data into
+    intelligent, human-centered solutions that drive business growth and engagement.
+  </p>
+</section>
+
+<!-- ✅ DATA ANALYTICS PROJECTS (Amazon + E-Commerce + AI Segmentation) -->
+<section class="container pb-5">
+  <div class="row g-4">
+
+    <!-- Amazon Data Analytics Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="project-card h-100 tilt-card" data-tilt-max="8">
+        <a href="{{ url_for('amazon_analysis') }}" class="text-decoration-none">
+          <img src="{{ url_for('static', filename='assets/img/amazon/amazon_books_cover.jpg') }}"
+               alt="Amazon Bestselling Books Data Analysis"
+               class="project-img tilt-image rounded-top">
+          <div class="project-overlay d-flex flex-column justify-content-center text-center">
+            <h4 class="text-white fw-bold">Amazon Bestselling Books Analysis</h4>
+            <p class="text-white-50 small px-3">
+              A decade-long analytics project uncovering pricing patterns, rating behaviour,
+              genre performance and customer trust — powered by Python, Tableau and strategic insights.
+            </p>
+            <span class="btn btn-outline-light btn-sm mt-2">View Full Analysis</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- E-Commerce Data Analytics Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="project-card h-100 tilt-card" data-tilt-max="8">
+        <a href="{{ url_for('ecommerce_analysis') }}" class="text-decoration-none">
+          <img src="{{ url_for('static', filename='assets/img/ecommerce/ecommerce_cover.jpg') }}"
+               alt="E-Commerce Analytics Case Study"
+               class="project-img tilt-image rounded-top">
+          <div class="project-overlay d-flex flex-column justify-content-center text-center">
+            <h4 class="text-white fw-bold">E-Commerce Marketing Analytics</h4>
+            <p class="text-white-50 small px-3">
+              A multi-year customer behaviour, funnel & revenue analysis (2020–2025),
+              featuring segmentation, churn modelling, and marketing performance insights.
+            </p>
+            <span class="btn btn-outline-light btn-sm mt-2">View Full Analysis</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ⭐ AI-Powered Segmentation & Retention Analytics Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="project-card h-100 tilt-card" data-tilt-max="8">
+        <a href="{{ url_for('company_analysis') }}" class="text-decoration-none">
+          <img src="{{ url_for('static', filename='assets/img/ai/ai_segmentation_cover.jpg') }}"
+               alt="AI Customer Segmentation & Retention Analytics"
+               class="project-img tilt-image rounded-top">
+          <div class="project-overlay d-flex flex-column justify-content-center text-center">
+            <h4 class="text-white fw-bold">AI Customer Segmentation & Retention</h4>
+            <p class="text-white-50 small px-3">
+              Machine learning–driven RFM scoring, churn prediction, lifecycle segmentation
+              and automated retention recommendations for 20,000+ customers.
+            </p>
+            <span class="btn btn-outline-light btn-sm mt-2">View Full Project</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ✅ FEATURED PROJECT SECTION -->
+<section id="projects" class="container py-5 text-center fade-in">
+  <h2 class="fw-bold mb-3">Featured Project</h2>
+  <p class="text-muted mx-auto" style="max-width: 700px;">
+    Discover how I apply database design, automation, and system architecture to solve real-world business problems — turning fragmented operations into seamless, data-driven workflows.
+  </p>
+</section>
+
+<!-- ✅ DEVISTAR WIRE COMPANY SYSTEM -->
+<section class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="project-card h-100 tilt-card position-relative" data-tilt-max="8">
+        <a href="{{ url_for('devistar_project') }}" class="text-decoration-none">
+          <img src="{{ url_for('static', filename='assets/img/devistar/devistar_system.jpg') }}"
+               alt="Devistar Wire Company Database System"
+               class="project-img tilt-image rounded-top w-100">
+          <div class="project-overlay d-flex flex-column justify-content-center align-items-center text-center px-3">
+            <h4 class="text-white fw-bold">Devistar Wire Company Database System</h4>
+            <p class="text-white-50 small">
+              A complete Microsoft Access–based information system built for a Nigerian wire manufacturing company — integrating secure role-based access, automated reporting, and end-to-end workflow tracking across production, sales, and branch operations.
+            </p>
+            <span class="btn btn-outline-light btn-sm mt-2">View Full Case Study</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+{% endblock %}

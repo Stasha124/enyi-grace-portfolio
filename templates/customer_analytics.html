@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+{% block title %}AI-Powered Customer Segmentation & Retention Analytics | Enyi Grace{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section text-center text-white d-flex align-items-center justify-content-center"
+         style="background: linear-gradient(135deg, #0d1b2a, #1b263b); min-height: 45vh;">
+  <div class="container">
+    <h1 class="display-5 fw-bold mb-3">🤖 AI-Powered Customer Segmentation & Retention Analytics</h1>
+    <p class="lead text-light mb-0">
+      RFM Segmentation • Churn Prediction • Personalised Retention & Email Automation
+    </p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="container py-5">
+
+  <!-- INTRO -->
+  <p class="lead mb-4 text-muted">
+    This project showcases an end-to-end <strong>customer intelligence system</strong> built on real E-Commerce data.
+    Using Python, machine learning and marketing analytics, we designed a pipeline that segments customers by value,
+    predicts churn risk, and automatically generates <strong>personalised retention strategies and email content</strong>.
+  </p>
+
+  <p class="text-muted">
+    The solution integrates data from <strong>customers</strong>, <strong>orders</strong>,
+    <strong>order items</strong> and <strong>products</strong>. From there, it builds
+    <strong>RFM (Recency, Frequency, Monetary)</strong> scores, trains a
+    <strong>Random Forest churn model</strong>, assigns a retention strategy to every customer, and generates
+    <strong>HTML-ready emails</strong> tailored to each segment. This page summarises the key stages of the project,
+    the insights uncovered, and how the system can power an <em>AI-driven digital experience</em>.
+  </p>
+
+  <!-- 1. DATA PIPELINE -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">1️⃣ Unified Data Pipeline: Customers, Orders & Products</h3>
+    <img src="{{ url_for('static', filename='assets/img/customer_analytics/data_pipeline.png') }}"
+         alt="Customer Data Pipeline"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      Four raw CSV files – <strong>customers</strong>, <strong>orders</strong>, <strong>order_items</strong>
+      and <strong>products</strong> – are cleaned and merged into a single analytical dataset. A reusable
+      <code>load_and_clean_csv()</code> function standardises column names, removes duplicates, handles missing values
+      and converts date columns to proper <code>datetime</code> type.
+    </p>
+      <img src="{{ url_for('static', filename='assets/img/customer_analytics/data_pipeline_2.png') }}"
+         alt="Customer Data Pipeline"
+         class="img-fluid rounded shadow mb-4">
+    <p>
+      The tables are then joined on <strong>customer_id</strong>, <strong>order_id</strong> and
+      <strong>product_id</strong>, creating a rich view of each customer that includes demographics, transaction
+      history, product mix, device, and revenue metrics such as <strong>subtotal</strong>, <strong>total_usd</strong>,
+      and <strong>margin</strong>.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-primary rounded mt-3">
+      <h6 class="fw-bold text-primary mb-2">🧠 Insight</h6>
+      <p class="mb-0">
+        A consistent, well-cleaned dataset makes it possible to move from descriptive reporting to predictive and
+        prescriptive analytics. The same pipeline can be scheduled to run daily, refreshing the entire customer view
+        without manual intervention.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. RFM SEGMENTATION -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">2️⃣ RFM Segmentation: Recency, Frequency & Monetary Value</h3>
+    <img src="{{ url_for('static', filename='assets/img/customer_analytics/rfm_segments.png') }}"
+         alt="RFM Segmentation"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      For each customer, the system calculates:
+    </p>
+    <ul>
+      <li><strong>Recency</strong> – days since the last order</li>
+      <li><strong>Frequency</strong> – unique number of orders</li>
+      <li><strong>Monetary</strong> – total revenue generated (<code>total_usd</code>)</li>
+    </ul>
+    <p>
+      Using <code>pandas.qcut()</code> with ranking, these metrics are converted into
+      <strong>R, F and M scores (1–5)</strong>, which are then summed into a total <strong>RFM score (3–15)</strong>.
+      Customers are classified as <strong>High Value</strong>, <strong>Medium Value</strong> or <strong>Low Value</strong>.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-secondary rounded mt-3">
+      <h6 class="fw-bold text-secondary mb-2">🧠 Insight</h6>
+      <p class="mb-0">
+        RFM reveals a small but very profitable group of <strong>High Value customers</strong> who buy frequently,
+        spend more, and purchase recently. At the same time, a long tail of low-value customers highlights the need for
+        targeted activation campaigns rather than generic discounts.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-0">
+        Use RFM segments to drive <strong>tiered CRM journeys</strong>: VIP perks and early access for High Value,
+        growth-oriented upsells for Medium Value, and onboarding / education flows for Low Value customers.
+      </p>
+    </div>
+  </div>
+
+  <!-- 3. INACTIVITY & CHURN LABEL -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">3️⃣ Customer Inactivity & Churn Labelling</h3>
+    <img src="{{ url_for('static', filename='assets/img/customer_analytics/inactivity_bands.png') }}"
+         alt="Customer Inactivity Segments"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      Every customer’s <strong>last_order_time</strong> is calculated, and inactivity is measured as days since that
+      order. Customers are grouped into bands:
+      <em>Active (&lt;1 month)</em>, <em>1–3 months</em>, <em>3–6 months</em>, <em>6–12 months</em>, and
+      <em>Dormant (&gt;1 year)</em>.
+    </p>
+
+    <p>
+      A binary churn label is then created using a <strong>90-day threshold</strong>.
+      Customers with <code>recency &gt; 90 days</code> are tagged as <strong>Churn = 1</strong>, and others as
+      <strong>Churn = 0</strong>. This serves as the target variable for the machine learning model.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-danger rounded mt-3">
+      <h6 class="fw-bold text-danger mb-2">🧠 Insight</h6>
+      <p class="mb-0">
+        A large share of the customer base falls into the <strong>3–12 month inactivity window</strong>, representing
+        both latent churn and a huge reactivation opportunity. Focusing solely on new acquisition would ignore this
+        low-hanging fruit.
+      </p>
+    </div>
+  </div>
+
+  <!-- 4. CHURN PREDICTION MODEL -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">4️⃣ Churn Prediction Using Random Forest</h3>
+    <img src="{{ url_for('static', filename='assets/img/customer_analytics/churn_model_performance.png') }}"
+         alt="Churn Model Performance"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      A <strong>Random Forest Classifier</strong> is trained using <strong>monetary</strong>,
+      <strong>frequency</strong> and <strong>recency</strong> as features and the binary churn label as the target.
+      The data is split into training and test sets using <code>train_test_split</code> with an 80/20 ratio.
+    </p>
+
+    <p>
+      The model outputs a <strong>churn probability</strong> for each customer. Customers with
+      <code>ChurnProbability &gt; 0.5</code> are flagged as <strong>at-risk</strong>.
+      Classification metrics from <code>classification_report</code> are used to evaluate precision, recall and
+      F1-score.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-secondary rounded mt-3">
+      <h6 class="fw-bold text-secondary mb-2">🧠 Insight</h6>
+      <p class="mb-0">
+        Combining RFM with churn probabilities enables more nuanced targeting:
+        some Medium Value customers may be at high risk and require immediate attention, while certain Low Value
+        customers show stable behaviour and can be deprioritised.
+      </p>
+    </div>
+  </div>
+
+  <!-- 5. RETENTION STRATEGY ENGINE -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">5️⃣ Retention Strategy Engine per Customer Segment</h3>
+    <img src="{{ url_for('static', filename='assets/img/customer_analytics/retention_strategies.png') }}"
+         alt="Retention Strategy Engine"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      A rule-based engine assigns a <strong>RetentionStrategy</strong> label to each customer using both RFM segment
+      and churn probability:
+    </p>
+    <ul>
+      <li><strong>VIP</strong> – High Value customers</li>
+      <li><strong>Growth</strong> – Medium Value customers with up-sell potential</li>
+      <li><strong>Activation</strong> – Low Value customers needing onboarding & incentives</li>
+      <li><strong>Churn Risk</strong> – any customer with high churn probability</li>
+      <li><strong>General</strong> – all other customers</li>
+    </ul>
+
+    <div class="p-3 bg-light border-start border-4 border-info rounded mt-3">
+      <h6 class="fw-bold text-info mb-2">🧠 Insight</h6>
+      <p class="mb-0">
+        The strategy engine bridges the gap between data science and marketing execution. Instead of just labeling
+        customers as “High RFM score”, the system directly translates analytics into <strong>actionable playbooks</strong>
+        for CRM, email and paid media teams.
+      </p>
+    </div>
+  </div>
+
+  <!-- 6. PERSONALISED HTML EMAIL AUTOMATION -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">6️⃣ Personalised HTML Email Generation</h3>
+    <img src="{{ url_for('static', filename='assets/img/customer_analytics/email_examples.png') }}"
+         alt="Personalised Email Examples"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      For every customer, a function builds a <strong>dynamic HTML email</strong> using their:
+    </p>
+    <ul>
+      <li><strong>Customer name</strong> (from the merged dataset)</li>
+      <li><strong>RetentionStrategy</strong> (VIP, Growth, Activation, Churn Risk, General)</li>
+      <li><strong>Churn probability</strong> and <strong>last order date</strong></li>
+    </ul>
+     <img src="{{ url_for('static', filename='assets/img/customer_analytics/email_examples_2.png') }}"
+         alt="Personalised Email Examples"
+         class="img-fluid rounded shadow mb-4">
+    <p>
+      Emails are generated with different tone and content for each segment – e.g. VIP appreciation messages, win-back
+      offers for churn risk, or gentle nudges for activation. The system returns a list of ready-to-send messages
+      containing <code>customer_id</code>, <code>email</code>, <code>segment</code> and <code>HTML content</code>.
+    </p>
+      <img src="{{ url_for('static', filename='assets/img/customer_analytics/email_example_3.png') }}"
+         alt="Personalised Email Examples"
+         class="img-fluid rounded shadow mb-4">
+
+      <img src="{{ url_for('static', filename='assets/img/customer_analytics/email_example_4.png') }}"
+         alt="Personalised Email Examples"
+         class="img-fluid rounded shadow mb-4">
+
+    <div class="p-3 bg-light border-start border-4 border-warning rounded mt-3">
+      <h6 class="fw-bold text-warning mb-2">🧠 Insight</h6>
+      <p class="mb-0">
+        Instead of sending generic newsletters, the brand can deliver <strong>context-aware communication</strong> that
+        respects where each customer is in their lifecycle: VIP love, recovery for churn-risk users, and education for
+        low-value newcomers.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-0">
+        Connect this pipeline to an ESP (e.g. SendGrid, Mailchimp, Klaviyo) or internal SMTP service, and schedule
+        weekly or monthly campaigns that automatically pull the latest segments and render these HTML templates.
+      </p>
+    </div>
+  </div>
+
+  <!-- 7. AI-POWERED INSIGHTS SUMMARY -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">7️⃣ AI-Powered Business Insights</h3>
+    <img src="{{ url_for('static', filename='assets/img/customer_analytics/ai_insights.png') }}"
+         alt="AI Insights Report"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      A summarised <strong>data package</strong> (RFM stats, segment sizes, inactivity bands, top products, markets and
+      devices) is passed into an AI prompt. This generates a narrative report covering:
+    </p>
+      <img src="{{ url_for('static', filename='assets/img/customer_analytics/ai_insights_2.png') }}"
+         alt="AI Insights Report"
+         class="img-fluid rounded shadow mb-4">
+    <ul>
+      <li>Customer behaviour patterns and value distribution</li>
+      <li>Key churn drivers and opportunities</li>
+      <li>Product and geography performance</li>
+      <li>Strategic and tactical marketing recommendations</li>
+    </ul>
+
+    <p>
+      The report acts as a <strong>human-readable layer</strong> on top of the analytics, suitable for stakeholders who
+      aren’t close to the raw data or code.
+    </p>
+  </div>
+
+  <!-- 8. TECHNOLOGY STACK & SKILLS -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">8️⃣ Tech Stack & Skills Demonstrated</h3>
+    <ul class="text-muted">
+      <li><strong>Python:</strong> pandas, scikit-learn, scheduling and automation</li>
+      <li><strong>Data Engineering:</strong> multi-table joins, cleaning, feature engineering</li>
+      <li><strong>Analytics:</strong> RFM, segmentation, cohort-style inactivity bands</li>
+      <li><strong>Machine Learning:</strong> Random Forest classification, churn modelling</li>
+      <li><strong>Marketing:</strong> lifecycle strategy, email personalisation, retention design</li>
+      <li><strong>Web:</strong> HTML generation for marketing assets, portfolio integration</li>
+    </ul>
+  </div>
+
+  <!-- OVERALL CONCLUSION -->
+  <div class="p-5 bg-light rounded-4 shadow-sm mt-5">
+    <h3 class="fw-bold mb-3 text-dark">📈 Overall Outcome</h3>
+
+    <p class="text-muted">
+      This project goes beyond static dashboards by connecting <strong>data, models and marketing execution</strong>.
+      It shows how an E-Commerce brand can automatically segment its customers, predict churn, and trigger personalised
+      communications – all from a single Python pipeline.
+    </p>
+
+    <p class="text-muted mb-0">
+      <em>
+        In practice, this type of AI-powered customer segmentation and retention analytics can reduce churn, grow
+        lifetime value and enable truly data-driven storytelling across email, CRM and digital channels.
+      </em>
+    </p>
+  </div>
+
+  <!-- BACK TO HOME -->
+  <div class="text-center mt-5">
+    <a href="{{ url_for('index') }}" class="btn btn-outline-dark px-4 py-2 fw-semibold rounded-pill">
+      ← Back to Home Page
+    </a>
+  </div>
+
+</section>
+
+{% endblock %}

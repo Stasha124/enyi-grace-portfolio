@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+{% block title %}Amazon Bestseller Analysis | Enyi Grace{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section text-center text-white d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #0d1b2a, #1b263b); min-height: 45vh;">
+  <div class="container">
+    <h1 class="display-5 fw-bold mb-3">📊 Marketing Insights Summary</h1>
+    <p class="lead text-light">Amazon Bestselling Books (2009–2019)</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="container py-5">
+  <p class="lead mb-5 text-muted">
+    This analysis explores patterns in customer satisfaction, pricing, genre performance, author dominance, and engagement trends across Amazon’s top 50 bestselling books from 2009 to 2019.
+    By combining descriptive statistics, visual analytics, and marketing interpretation, we uncover how readers interact with bestselling books on Amazon and what this reveals about consumer behaviour, brand trust, and long-term engagement in the e-commerce book market.
+  </p>
+
+  <!-- 1. Relationship Between Price and User Rating -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">1️⃣ Relationship Between Price and User Rating</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/price_vs_rating.png') }}" alt="Price vs User Rating" class="img-fluid rounded shadow mb-4">
+    <p>
+      To understand how pricing relates to customer satisfaction, we examined the correlation between <strong>Price</strong> and <strong>User Rating</strong>. The correlation coefficient was
+      <strong>r = −0.13</strong>, which indicates a very weak negative relationship between these two variables. In practical terms, this means that as price increases, user ratings tend to change
+      only slightly, and the effect is so small that it is not meaningful from a behavioural or strategic point of view.
+    </p>
+    <p>
+      This result suggests that readers do not rate books more highly simply because they are more expensive, nor do they punish books heavily for being priced higher. Instead, readers appear to focus on
+      the perceived quality of content, storytelling, usefulness, or emotional impact. Price, in this context, is a secondary factor when it comes to satisfaction.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-primary rounded mt-3">
+      <h6 class="fw-bold text-primary mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        The weak negative relationship between price and user rating implies that <strong>pricing alone is not a key driver of satisfaction</strong>. Readers are willing to pay more for books that offer
+        strong value, whether through compelling stories, practical knowledge, or trusted authors.
+      </p>
+      <p class="mb-0">
+        From a marketing perspective, this suggests that Amazon and publishers can confidently maintain <strong>premium pricing for high-value or branded titles</strong> (e.g. well-known authors, expert
+        Non-Fiction, or special editions) without significantly risking lower ratings. The focus should be on <strong>communicating value</strong> – through blurbs, reviews, and recommendations – rather
+        than competing mainly on price.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. Genre Performance and Reader Preferences -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">2️⃣ Genre Performance and Reader Preferences</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/genre_performance.png') }}" alt="Genre Performance and Reader Preferences" class="img-fluid rounded shadow mb-4">
+    <p>
+      When we compared <strong>Fiction</strong> and <strong>Non-Fiction</strong>, we found interesting differences in both average ratings and pricing. Fiction titles achieved slightly higher average ratings
+      (around <strong>4.65</strong>) compared to Non-Fiction titles (around <strong>4.59</strong>). Although this difference is modest, it suggests that readers experience a slightly higher level of satisfaction with Fiction books overall.
+    </p>
+    <p>
+      At the same time, Non-Fiction books maintained <strong>higher average prices</strong> (approximately £15 vs £11 for Fiction). This pricing pattern reflects a perception that Non-Fiction delivers
+      more specialised, expert, or practical value – for example, in categories like psychology, self-help, business, or professional development.
+    </p>
+    <img src="{{ url_for('static', filename='assets/img/amazon/price_genre.png') }}" alt="Genre Performance and Price" class="img-fluid rounded shadow mb-4">
+    <p>
+      Together, these patterns reveal two distinct consumer mindsets:
+    </p>
+    <ul>
+      <li>
+        <strong>Fiction readers</strong> are often motivated by <strong>emotional engagement</strong>, entertainment, and narrative immersion. They reward books that make them feel deeply connected to characters and stories.
+      </li>
+      <li>
+        <strong>Non-Fiction readers</strong> are more likely to be seeking <strong>knowledge, guidance, or personal transformation</strong>. They are willing to pay a higher price when they perceive the author as credible or expert.
+      </li>
+    </ul>
+
+    <div class="p-3 bg-light border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        Fiction and Non-Fiction perform differently but both are strong: Fiction slightly leads in satisfaction, while Non-Fiction leads in price and perceived value. This creates a natural segmentation
+        opportunity in Amazon’s marketing and recommendation strategy.
+      </p>
+      <p class="mb-0">
+        <strong>Fiction</strong> campaigns should emphasise <strong>stories, characters, emotions, and community</strong> (e.g. book clubs, series, fan discussions). <strong>Non-Fiction</strong> promotions
+        should highlight <strong>expertise, credibility, and outcomes</strong> (“learn this skill”, “improve your life”, “scientifically backed”). In both cases, Amazon can use personalised
+        recommendations to match users with the genres that best fit their reading motivations.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2b. Combined Price and User Rating by Genre -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">2️⃣b. Combined Comparison: Average Price and User Rating by Genre</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/price_rating_genre.png') }}" alt="Price and User Rating by Genre" class="img-fluid rounded shadow mb-4">
+    <p>
+      This combined bar chart places <strong>average price</strong> and <strong>average user rating</strong> side by side for each genre, allowing us to see how <em>value</em> and <em>satisfaction</em>
+      interact in a single visual. The chart reinforces the earlier findings: Non-Fiction books tend to be <strong>more expensive</strong>, while Fiction books maintain <strong>slightly higher ratings</strong>.
+    </p>
+    <p>
+      This pattern suggests that Fiction and Non-Fiction genres are playing complementary roles within Amazon’s ecosystem. Fiction dominates on emotional connection and enjoyment, while Non-Fiction
+      positions itself more as an investment in knowledge or self-improvement. For many readers, paying more for Non-Fiction makes sense if they believe it will help them gain insights, skills, or
+      life improvements.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-info rounded mt-3">
+      <h6 class="fw-bold text-info mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        This dual comparison highlights that <strong>different genres justify their value in different ways</strong>. Fiction delivers perceived value through joy, escape, and emotional impact, while Non-Fiction delivers value through usefulness, expertise, and transformation.
+      </p>
+      <p class="mb-0">
+        Amazon can use this insight to shape genre-specific landing pages and email campaigns. For example, Fiction promotions might use language like “Get lost in this world” or “Stories you’ll never forget”,
+        while Non-Fiction promotions might focus on “Learn from experts”, “Change your mindset”, or “Actionable strategies you can apply today”. The pricing and rating patterns support these different
+        positioning strategies.
+      </p>
+    </div>
+  </div>
+
+  <!-- 3. Author Dominance and Brand Loyalty -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">3️⃣ Author Dominance and Brand Loyalty</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/author_dominance.png') }}" alt="Author Dominance and Brand Loyalty" class="img-fluid rounded shadow mb-4">
+    <p>
+      When we look at which authors appear most frequently in the bestseller list, a clear pattern emerges: a small group of authors account for a large share of bestselling titles over the decade.
+      Names like <strong>Jeff Kinney</strong>, <strong>Suzanne Collins</strong>, and <strong>Rick Riordan</strong> appear repeatedly, each contributing multiple books across different years.
+    </p>
+    <p>
+      This recurrence shows how <strong>author branding</strong> functions similarly to product branding. Once readers trust an author, they are far more likely to purchase future books from them,
+      especially in the context of series (e.g. <em>Diary of a Wimpy Kid</em>, <em>Percy Jackson</em>, or <em>The Hunger Games</em>). In addition, classic and trusted names such as <strong>Dr. Seuss</strong>
+      and organisations like the <strong>American Psychological Association</strong> maintain strong presence in children’s and Non-Fiction categories.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-warning rounded mt-3">
+      <h6 class="fw-bold text-warning mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        The dominance of a few recurring authors highlights the importance of <strong>author loyalty</strong> and <strong>long-term relationship building</strong>. Readers do not just buy books – they often follow
+        specific authors as trusted brands.
+      </p>
+      <p class="mb-0">
+        From a marketing perspective, Amazon and publishers can leverage this by:
+        <ul class="mb-0">
+          <li>Running <strong>author-focused campaigns</strong> (“New from Jeff Kinney”, “More from Rick Riordan”).</li>
+          <li>Using <strong>series bundles and collections</strong> to increase average order value.</li>
+          <li>Highlighting <strong>author pages with complete backlists</strong> and recommendations like “Readers also bought…”.</li>
+        </ul>
+        This reinforces author-driven micro-brands within the wider Amazon ecosystem.
+      </p>
+    </div>
+  </div>
+
+  <!-- 4. User Rating Trends Over Time -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">4️⃣ User Rating Trends Over Time</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/user_rating_trends.png') }}" alt="User Rating Trends Over Time" class="img-fluid rounded shadow mb-4">
+    <p>
+      Looking at average user ratings from 2009 to 2019, we observe a <strong>gradual upward trend</strong>. Ratings start at around <strong>4.55</strong> in the early years and climb to approximately
+      <strong>4.74</strong> by the end of the decade. While the change may look small numerically, it is significant given that the rating scale is capped at 5 and scores are already very high.
+    </p>
+    <p>
+      This pattern suggests that, over time, Amazon has become better at <strong>matching readers with books they are likely to enjoy</strong>. It also indicates that authors and publishers are responding to
+      feedback and trends, producing content that increasingly aligns with reader expectations.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-primary rounded mt-3">
+      <h6 class="fw-bold text-primary mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        The steady improvement in ratings over time is a strong signal of <strong>growing customer satisfaction and trust</strong>. This trend aligns with the expansion of recommendation algorithms,
+        user reviews, and personalised suggestions on Amazon.
+      </p>
+      <p class="mb-0">
+        For marketers, this reinforces the value of <strong>data-driven curation</strong>: by learning from behaviour and feedback, platforms can continuously refine what they present to users.
+        Highlighting “Top-rated this year” or “Consistently 4.7★ and above” can be a powerful way to reassure potential buyers and drive conversions.
+      </p>
+    </div>
+  </div>
+
+  <!-- 5. Relationship Between Reviews and Ratings -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">5️⃣ Relationship Between Reviews and Ratings</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/reviews_vs_ratings.png') }}" alt="Relationship Between Reviews and Ratings" class="img-fluid rounded shadow mb-4">
+    <img src="{{ url_for('static', filename='assets/img/amazon/review_corr.png') }}" alt="Regression Relationship Between Reviews and Ratings" class="img-fluid rounded shadow mb-4">
+    <p>
+      One key question was whether books with more reviews also have higher (or lower) ratings. The correlation between <strong>Total Reviews</strong> and <strong>User Rating</strong> was almost zero
+      (<strong>r = −0.0017</strong>), indicating <strong>no meaningful linear relationship</strong> between how many people review a book and how highly it is rated.
+    </p>
+    <p>
+      The scatter plot shows that books with very high review counts (high engagement) tend to cluster within a similar rating range (roughly 4.0 to 4.8), just like books with fewer reviews. This means that
+      popular books do not automatically receive better or worse ratings – they simply attract more opinions.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-danger rounded mt-3">
+      <h6 class="fw-bold text-danger mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        The near-zero correlation between reviews and ratings shows that <strong>popularity does not equal quality</strong>, but it also does not reduce it. Both niche books with few reviews and mass-market
+        books with thousands of reviews can achieve high satisfaction.
+      </p>
+      <p class="mb-0">
+        This creates space for two strategic approaches:
+        <ul class="mb-0">
+          <li><strong>Promote high-review books</strong> as socially validated and widely trusted.</li>
+          <li><strong>Showcase “hidden gems”</strong> – books with fewer reviews but excellent ratings – in personalised recommendations or curated lists.</li>
+        </ul>
+        By combining both, Amazon can drive discovery while still anchoring trust in widely reviewed titles.
+      </p>
+    </div>
+  </div>
+
+  <!-- 6. Distribution of Ratings by Review Volume -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">6️⃣ Distribution of Ratings by Review Volume</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/ratings_distribution.png') }}" alt="Distribution of Ratings by Review Volume" class="img-fluid rounded shadow mb-4">
+    <p>
+      A boxplot analysis of <strong>User Rating</strong> across review volume groups (Low, Medium, High, Very High) further supports the idea that satisfaction is stable. In all groups, median ratings remain
+      within the narrow band of <strong>4.6–4.7</strong>, and the overall distributions are consistently high.
+    </p>
+    <p>
+      The “Very High” review group shows a slightly wider spread and a few lower outliers, which is expected because mass-market books attract a broader range of readers with more varied preferences.
+      However, even in this group, ratings do not collapse – they remain strong overall.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-secondary rounded mt-3">
+      <h6 class="fw-bold text-secondary mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        The stability of ratings across all review volume categories shows that Amazon’s bestseller selection is <strong>robust and consistently satisfying</strong>, regardless of how widely a book is read.
+      </p>
+      <p class="mb-0">
+        Marketers can rely on ratings as a strong quality signal, while using review volume as a separate indicator of reach and awareness. This supports campaigns that feature both
+        <strong>highly popular titles</strong> and <strong>critically loved niche books</strong> without sacrificing quality.
+      </p>
+    </div>
+  </div>
+
+  <!-- 7. Total Reviews Trend (2009–2019) -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">7️⃣ Total Reviews Trend (2009–2019)</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/total_reviews_trend.png') }}" alt="Total Reviews Trend" class="img-fluid rounded shadow mb-4">
+    <p>
+      Total reviews increased sharply from around <strong>5,000 in 2009</strong> to more than <strong>15,000 by 2014</strong>, and then stabilised at this higher level through to 2019. This reveals two main phases:
+    </p>
+    <ul>
+      <li><strong>Growth phase (2009–2014):</strong> Rapid adoption of Amazon’s review system, growing user base, and increasing comfort with leaving feedback online.</li>
+      <li><strong>Stabilisation phase (2015–2019):</strong> A mature level of engagement where users continue to review actively, but growth is no longer exponential.</li>
+    </ul>
+    <p>
+      This pattern is typical of a platform that has reached <strong>engagement maturity</strong>. Users are now accustomed to reading and writing reviews, and reviews are embedded in their decision-making process.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">💡 Marketing Insight:</h6>
+      <p class="mb-1">
+        The growth and stabilisation of reviews show that Amazon has successfully built a culture of <strong>social proof</strong>. Reviews are now an expected and trusted part of the buying journey.
+      </p>
+      <p class="mb-0">
+        To further enhance engagement, Amazon could explore <strong>gamification</strong> (review badges, top reviewer labels), <strong>community recognition</strong>, or <strong>review-based challenges</strong>
+        to motivate highly engaged readers to keep contributing and to encourage hesitant users to write their first review.
+      </p>
+    </div>
+  </div>
+
+  <!-- 8. Combined Trends -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">8️⃣ Combined Trends: Ratings and Reviews Over the Years</h3>
+    <img src="{{ url_for('static', filename='assets/img/amazon/combined_trends.png') }}" alt="Combined Trends Ratings and Reviews" class="img-fluid rounded shadow mb-4">
+    <p>
+      When we plot <strong>Total Reviews</strong> and <strong>Average User Rating</strong> together on a dual-axis chart, we gain a holistic view of how engagement and satisfaction evolved side by side.
+      In the early years, both <strong>reviews and ratings increase together</strong>, showing that as more readers participate, satisfaction remains strong.
+    </p>
+    <p>
+      In later years, total reviews stabilise while ratings continue to rise slightly, indicating that even in a mature market with stable engagement, <strong>customer satisfaction is still improving</strong>.
+      This suggests better curation, better matching of readers to books, and possibly higher expectations that are being successfully met.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-primary rounded mt-3">
+      <h6 class="fw-bold text-primary mb-2">💡 Strategic Insight:</h6>
+      <p class="mb-1">
+        The combined trend of stable or growing engagement and rising satisfaction represents an <strong>ideal marketplace condition</strong>. Readers are active, and they are happy with what they buy.
+      </p>
+      <p class="mb-0">
+        This gives Amazon a strong foundation for brand messaging such as “Top-rated books of the decade” or “Readers love these titles”. For publishers and authors, it highlights the value of working with
+        data-driven platforms that continuously refine how content is discovered and experienced by readers.
+      </p>
+    </div>
+  </div>
+
+ <!-- ✅ OVERALL CONCLUSION -->
+<div class="p-5 bg-light rounded-4 shadow-sm mt-5 fade-in">
+  <h3 class="fw-bold mb-3 text-dark">📈 Overall Conclusion</h3>
+
+  <p class="text-muted">
+    Across the decade, Amazon’s bestseller ecosystem demonstrates
+    <strong>consistent and resilient performance</strong> in both customer satisfaction and engagement.
+    Prices, genres, and authors all play distinct but complementary roles in shaping reader behaviour and long-term trust.
+  </p>
+
+  <ul class="text-start mt-3">
+    <li><strong>Price:</strong> Minimal effect on satisfaction — readers prioritise content quality, trust, and value over cost.</li>
+    <li><strong>Fiction vs Non-Fiction:</strong> Emotional vs rational motivations — both thrive with tailored marketing strategies.</li>
+    <li><strong>Author Branding:</strong> A proven loyalty driver, influencing repeat purchases and multi-title engagement.</li>
+    <li><strong>Ratings & Reviews:</strong> Sustained strength confirms Amazon’s dominance in trust-based, data-driven ecosystems.</li>
+  </ul>
+
+  <p class="mt-4 mb-0 text-muted">
+    <em>
+      From a marketing perspective, this project showcases how
+      <strong>data-informed storytelling, personalisation, and reputation management</strong>
+      can maintain customer loyalty over time.
+      These insights extend beyond publishing — they apply to any digital product that thrives on user engagement, trust, and credibility.
+    </em>
+  </p>
+</div>
+
+<!-- ✅ BACK TO HOME BUTTON -->
+<div class="text-center mt-5">
+  <a href="{{ url_for('index') }}" class="btn btn-outline-dark px-4 py-2 fw-semibold rounded-pill">
+    ← Back to Home Page
+  </a>
+</div>
+
+</section>
+
+{% endblock %}

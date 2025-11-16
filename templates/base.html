@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Enyi Grace | Portfolio{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+</head>
+<body>
+
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Enyi Grace</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ✅ MAIN CONTENT -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- ✅ FOOTER -->
+<footer class="text-center py-4 mt-5 border-top">
+    <p class="mb-1 fw-semibold">Building Smart Data-Driven Solutions for Businesses</p>
+
+    <div class="d-flex justify-content-center gap-3 fs-4 mb-2">
+        <a href="https://www.linkedin.com/in/enyi-onyinye-grace/" target="_blank" class="text-dark">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://www.tiktok.com/@stasha253" target="_blank" class="text-dark">
+          <i class="bi bi-tiktok"></i>
+        </a>
+        <a href="https://www.instagram.com/gracey_shazzy" target="_blank" class="text-dark">
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com/@Enyionyinyegrace" target="_blank" class="text-dark">
+          <i class="bi bi-youtube"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61569773867509" target="_blank" class="text-dark">
+          <i class="bi bi-facebook"></i>
+        </a>
+    </div>
+
+    <p class="text-muted small mb-0">
+        © {{ current_year }} Enyi Onyinye Grace — All Rights Reserved.
+    </p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Fade-in on scroll -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const reveals = document.querySelectorAll('.fade-in');
+    const revealOnScroll = () => {
+        reveals.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                el.classList.add('show');
+            }
+        });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+});
+</script>
+
+<!-- Tilt animation for service cards -->
+<script>
+(function () {
+  const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+  function attachTilt(card) {
+    const img = card.querySelector('.tilt-image');
+    if (!img) return;
+
+    const maxDeg = parseFloat(card.dataset.tiltMax || '10');
+    let raf = null;
+
+    let targetRX = 0, targetRY = 0;
+    let currentRX = 0, currentRY = 0;
+
+    const smooth = () => {
+      currentRX += (targetRX - currentRX) * 0.12;
+      currentRY += (targetRY - currentRY) * 0.12;
+
+      img.style.setProperty('--rx', currentRX.toFixed(3) + 'deg');
+      img.style.setProperty('--ry', currentRY.toFixed(3) + 'deg');
+
+      if (Math.abs(targetRX - currentRX) > 0.001 || Math.abs(targetRY - currentRY) > 0.001) {
+        raf = requestAnimationFrame(smooth);
+      } else {
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+    };
+
+    const setGlowPos = (x, y) => {
+      const rect = card.getBoundingClientRect();
+      const mx = ((x - rect.left) / rect.width) * 100;
+      const my = ((y - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', mx + '%');
+      card.style.setProperty('--my', my + '%');
+    };
+
+    const calcTilt = (x, y) => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+
+      let dx = (x - cx) / (rect.width / 2);
+      let dy = (y - cy) / (rect.height / 2);
+
+      dx = clamp(dx, -1, 1);
+      dy = clamp(dy, -1, 1);
+
+      targetRX = clamp(dy * -maxDeg, -maxDeg, maxDeg);
+      targetRY = clamp(dx *  maxDeg, -maxDeg, maxDeg);
+
+      if (!raf) raf = requestAnimationFrame(smooth);
+    };
+
+    const resetTilt = () => {
+      targetRX = 0; targetRY = 0;
+      if (!raf) raf = requestAnimationFrame(smooth);
+    };
+
+    card.addEventListener('mousemove', (e) => {
+      calcTilt(e.clientX, e.clientY);
+      setGlowPos(e.clientX, e.clientY);
+    });
+    card.addEventListener('mouseenter', () => {
+      if (!raf) raf = requestAnimationFrame(smooth);
+    });
+    card.addEventListener('mouseleave', resetTilt);
+
+    card.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      calcTilt(t.clientX, t.clientY);
+      setGlowPos(t.clientX, t.clientY);
+    }, { passive: true });
+
+    card.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      calcTilt(t.clientX, t.clientY);
+      setGlowPos(t.clientX, t.clientY);
+    }, { passive: true });
+
+    card.addEventListener('touchend', resetTilt, { passive: true });
+    card.addEventListener('touchcancel', resetTilt, { passive: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.tilt-card').forEach(attachTilt);
+  });
+})();
+</script>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

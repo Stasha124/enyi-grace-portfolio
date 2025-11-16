@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Enyi Grace{% endblock %}
+
+{% block content %}
+
+<!-- ✅ HERO SECTION -->
+<section class="hero-section d-flex align-items-center text-center text-white">
+    <div class="container col-xxl-6 px-4 py-5">
+        <h1 class="display-4 fw-bold mb-3">
+            Hi, I’m Enyi Onyinye Grace
+        </h1>
+
+        <p class="lead mb-4">
+            I help businesses turn raw data into intelligent systems — powered by AI, automation,
+            and full-stack development using Python.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{{ url_for('services') }}" class="btn btn-primary btn-lg px-4">Work With Me</a>
+            <a href="{{ url_for('projects') }}" class="btn btn-outline-light btn-lg px-4">View My Projects</a>
+
+        </div>
+    </div>
+</section>
+
+<!-- ✅ HOW I HELP BUSINESSES -->
+<section id="services" class="container py-5 fade-in">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">How I Help Businesses</h2>
+        <p class="text-muted">Practical AI, Automation & Full-Stack solutions — backed by real results.</p>
+    </div>
+
+    <div class="row align-items-md-stretch">
+        <!-- LEFT = SERVICE -->
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-bg-dark rounded-3">
+                <h3>AI-Powered Automation & Full-Stack Development</h3>
+                <p>
+                    I design and build intelligent business systems using
+                    <strong>Python, Flask/FastAPI, SQL, AI models & data automation</strong>.
+                    From process automation to smart dashboards — I help businesses operate
+                    faster, smarter, and more efficiently.
+                </p>
+                <a href="/services" class="btn btn-outline-light" type="button">Explore Services</a>
+            </div>
+        </div>
+
+        <!-- RIGHT = FEATURED PROJECT -->
+        <div class="col-md-6 mt-4 mt-md-0">
+            <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                <h3>Featured Analytics & AI Projects</h3>
+                <p>
+            A portfolio of data-driven, AI-powered and full-stack digital solutions covering
+            <strong>E-commerce analytics, customer segmentation, churn prediction,
+            CRM systems, Amazon marketplace insights and mental-health technology</strong>.
+           </p>
+                <a href="/projects" class="btn btn-outline-secondary" type="button">
+                    View Full Case Study
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ TRUST & SERVICE SHOWCASE (3 CARDS) -->
+<section class="container py-5 text-center fade-in">
+  <p class="text-uppercase text-muted small mb-2">Trusted AI & Digital Systems</p>
+  <h2 class="fw-bold mb-5">
+    Trusted by businesses & professionals worldwide — powered by AI, data, and modern automation.
+  </h2>
+
+  <div class="row g-4">
+
+    <!-- CARD 1: Amazon Bestselling Books Analysis -->
+    <div class="col-md-4">
+      <a href="{{ url_for('amazon_analysis') }}" class="text-decoration-none text-dark">
+        <div class="card h-100 border-0 shadow-sm clickable-card tilt-card" data-tilt-max="10">
+          <img src="{{ url_for('static', filename='assets/img/amazon/amazon_books_cover.jpg') }}"
+               class="card-img-top rounded-top tilt-image"
+               alt="Amazon Bestselling Books Data Analysis (2009–2019)">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Amazon Bestselling Books Analysis</h5>
+            <p class="card-text small text-muted">
+              A decade-long data analytics project uncovering patterns in pricing, ratings, and consumer trust — revealing how storytelling, price, and author branding influence long-term engagement.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+<!-- CARD 2: E-Commerce Analytics Case Study -->
+<div class="col-md-4">
+  <a href="{{ url_for('ecommerce_analysis') }}" class="text-decoration-none text-dark">
+    <div class="card h-100 border-0 shadow-sm clickable-card tilt-card" data-tilt-max="10">
+      <img src="https://media-www.sqspcdn.com/images/pages/flagship/invoicing/related-products/payments/payments-mobile-2-500w.jpg"
+           class="card-img-top rounded-top tilt-image"
+           alt="E-Commerce Marketing Analytics Case Study">
+      <div class="card-body">
+        <h5 class="card-title fw-bold">E-Commerce Marketing Analytics</h5>
+        <p class="card-text small text-muted">
+          A full data-driven analysis of customer behaviour, funnels, revenue, reviews, and marketing performance (2020–2025).
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+
+    <!-- CARD 3: AI-Powered Digital Experience -->
+    <div class="col-md-4">
+      <a href="{{ url_for ('company_analysis') }}" class="text-decoration-none text-dark">
+        <div class="card h-100 border-0 shadow-sm clickable-card tilt-card" data-tilt-max="10">
+          <img src="https://media-www.sqspcdn.com/images/pages/flagship/invoicing/related-products/marketing-tools/marketing-mobile-2-500w.jpg"
+               class="card-img-top rounded-top tilt-image"
+               alt="AI-Powered Digital Marketing Experience">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">AI-Powered Digital Experience</h5>
+            <p class="card-text small text-muted">
+              Data-driven personalization, predictive analytics, and automation to enhance customer engagement, retention, and brand storytelling.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ✅ PROJECTS ANCHOR (placeholder for now) -->
+<section id="projects" class="container py-5">
+    <h2 class="fw-bold mb-3">Featured Projects</h2>
+    <p class="text-muted">
+        Project gallery coming soon. I’ll highlight real-world AI, automation, and full-stack solutions I’ve built.
+    </p>
+</section>
+
+{% endblock %}

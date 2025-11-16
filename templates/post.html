@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Enyi Grace{% endblock %}
+
+{% block content %}
+<section class="project-detail py-5 text-center text-light" style="background: linear-gradient(120deg, #001f3f, #003366);">
+    <div class="container">
+        <h1 class="fw-bold">{{ project.title }}</h1>
+        <p class="lead mt-3 text-white-50">{{ project.description }}</p>
+
+        <div class="my-5">
+            <img src="{{ url_for('static', filename='assets/img/projects/' + project.image) }}"
+                 alt="{{ project.title }}" class="img-fluid rounded shadow-lg" style="max-height: 400px; object-fit: cover;">
+        </div>
+
+        <div class="text-start bg-light text-dark p-5 rounded mx-auto" style="max-width: 850px;">
+            <h4>Technologies Used</h4>
+            <ul>
+                {% for tool in project.tools %}
+                    <li>{{ tool }}</li>
+                {% endfor %}
+            </ul>
+
+            <h4 class="mt-4">Outcome</h4>
+            <p>{{ project.outcome }}</p>
+        </div>
+
+        <a href="{{ url_for('projects') }}" class="btn btn-outline-light mt-5">← Back to Projects</a>
+    </div>
+</section>
+{% endblock %}

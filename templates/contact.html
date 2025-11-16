@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Contact | Enyi Grace{% endblock %}
+
+{% block content %}
+
+<!-- ✅ CONTACT HERO -->
+<section class="contact-hero d-flex align-items-center justify-content-center text-center text-white">
+    <div class="overlay"></div>
+    <div class="content">
+        <h1 class="display-4 fw-bold">Let's Build Something Smart Together</h1>
+        <p class="lead mt-3">Have a project, collaboration, or question? Send me a message below.</p>
+    </div>
+</section>
+
+<!-- ✅ CONTACT FORM -->
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="contact-card p-4 shadow-sm rounded">
+                <form method="POST" action="{{ url_for('send_email') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label fw-semibold">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Your Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label fw-semibold">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label fw-semibold">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Type your message..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- ✅ Flash Messages (Global) -->
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show text-center fw-semibold" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- ✅ SOCIAL CONTACT OPTIONS -->
+    <div class="text-center mt-5">
+        <p class="text-muted mb-3">Or reach me on</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/enyi-onyinye-grace/" target="_blank" class="mx-3 text-decoration-none text-dark">
+                <i class="bi bi-linkedin fs-3"></i>
+            </a>
+            <a href="https://www.facebook.com" target="_blank" class="mx-3 text-decoration-none text-dark">
+                <i class="bi bi-facebook fs-3"></i>
+            </a>
+            <a href="https://www.instagram.com/gracey_shazzy" target="_blank" class="mx-3 text-decoration-none text-dark">
+                <i class="bi bi-instagram fs-3"></i>
+            </a>
+            <a href="https://www.tiktok.com/@stasha253" target="_blank" class="mx-3 text-decoration-none text-dark">
+                <i class="bi bi-tiktok fs-3"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

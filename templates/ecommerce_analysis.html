@@ -1,0 +1,657 @@
+{% extends "base.html" %}
+{% block title %}E-Commerce Marketing Analytics | Enyi Grace{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section text-center text-white d-flex align-items-center justify-content-center"
+         style="background: linear-gradient(135deg, #0d1b2a, #1b263b); min-height: 45vh;">
+  <div class="container">
+    <h1 class="display-5 fw-bold mb-3">📊 E-Commerce Marketing Analytics Case Study</h1>
+    <p class="lead text-light mb-0">Customer Behaviour, Funnel Performance & Revenue Insights (2020–2025)</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="container py-5">
+
+  <!-- INTRO -->
+  <p class="lead mb-4 text-muted">
+    This case study presents a detailed marketing analytics project based on a multi-year E-Commerce dataset
+    covering the period from <strong>2020 to 2025</strong>. The analysis combines transactional data, clickstream
+    events, customer profiles and reviews to understand how customers browse, purchase and provide feedback, and how
+    these behaviours translate into revenue and long-term value for the business.
+  </p>
+
+  <p class="text-muted">
+    The underlying database integrates <strong>orders</strong>, <strong>order items</strong>, <strong>products</strong>,
+    <strong>customers</strong>, <strong>events/clickstream</strong>, and <strong>product reviews</strong>.
+    This enables both a financial view (revenue, profit, margins) and a behavioural view
+    (add-to-cart, checkout, churn risk, rating patterns). Each section below summarises a key part of the analysis,
+    supported by visualisations and interpreted through a marketing lens. For every topic, the report presents a clear
+    <strong>insight</strong> and a concrete <strong>recommendation</strong> for decision-making.
+  </p>
+
+  <!-- 1. YEARLY REVENUE & PROFIT -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">1️⃣ Yearly Revenue, Profit and Order Behaviour (2020–2025)</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/yearly_revenue_profit.png') }}"
+         alt="Yearly Revenue and Profit"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      The first stage of the analysis focuses on overall financial performance. Transactions are grouped by
+      <strong>order_year</strong> and summarised using key indicators: <strong>total revenue</strong>,
+      <strong>total profit</strong>, <strong>average order value (AOV)</strong>, <strong>average profit margin</strong>,
+      and <strong>order counts</strong>. This provides a clean snapshot of annual business health and growth.
+    </p>
+
+    <p>
+      Yearly revenue fluctuates within a relatively narrow range of approximately <em>$1.47M to $1.76M</em> and profit
+      margins remain stable around <strong>27–28%</strong>. Average order value stays between <strong>$166 and $173</strong>.
+      There are modest dips in some years (such as 2022 and 2025), but no structural collapse in demand. Overall, the
+      trend reflects a <strong>mature and resilient E-Commerce operation</strong> with predictable customer spend patterns.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-primary rounded mt-3">
+      <h6 class="fw-bold text-primary mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        Stable revenue, profit and AOV indicate a strong <strong>product–market fit</strong> and a customer base that
+        consistently engages with the store. However, the small downward variations in revenue show that the business is
+        not fully maximising growth opportunities in certain years or seasons.
+      </p>
+      <p class="mb-0">
+        The company enjoys a solid baseline but would benefit from targeted campaigns designed to turn flat or marginally
+        negative years into periods of deliberate growth.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Implement a structured <strong>annual marketing calendar</strong> aligned with peak demand moments
+        (e.g. New Year health campaigns, back-to-school, summer promotions, Black Friday/Cyber Monday). For each year:
+      </p>
+      <ul class="mb-1">
+        <li>Identify historically weaker months and attach <strong>targeted promotions</strong> to boost performance.</li>
+        <li>Plan <strong>category-focused campaigns</strong> around high-margin or strategic products.</li>
+        <li>Monitor year-on-year revenue changes during campaign windows to quantify impact.</li>
+      </ul>
+      <p class="mb-0">
+        This transforms a stable business into a <strong>strategically managed growth engine</strong>.
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. COUNTRY-LEVEL REVENUE & MARGIN -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">2️⃣ Country-Level Revenue and Profitability</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/country_revenue_margin.png') }}"
+         alt="Revenue by Country"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      To understand geographic performance, the analysis aggregates <strong>total revenue</strong>,
+      <strong>total profit</strong>, <strong>average order value</strong>, and <strong>average profit margin</strong>
+      by <strong>order_country</strong>. This comparison highlights which markets drive the largest share of turnover
+      and which deliver the strongest economics per order.
+    </p>
+
+    <p>
+      Some countries operate as <strong>high-volume, high-revenue markets</strong>, while others generate smaller sales
+      volumes but stronger margins. This mix reflects differences in competition, pricing, product availability and
+      local customer expectations.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-secondary rounded mt-3">
+      <h6 class="fw-bold text-secondary mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        The business benefits from both <strong>mature high-volume markets</strong> and
+        <strong>smaller high-margin markets</strong>. High-volume markets provide reliability and scale, whereas
+        high-margin markets offer attractive unit profitability and expansion potential.
+      </p>
+      <p class="mb-0">
+        A one-size-fits-all marketing approach would fail to exploit these distinct strengths.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Adopt a <strong>tiered geo-strategy</strong>:
+      </p>
+      <ul class="mb-1">
+        <li>
+          In <strong>Tier 1 (high-volume) markets</strong>, focus on retention, loyalty and subscription initiatives to
+          consolidate market share.
+        </li>
+        <li>
+          In <strong>Tier 2 (high-margin) markets</strong>, invest in acquisition: localised creatives, language support,
+          partnerships with local influencers and region-specific campaigns.
+        </li>
+        <li>
+          Track <strong>CAC</strong> and <strong>LTV</strong> per region to continuously refine budget allocation.
+        </li>
+      </ul>
+      <p class="mb-0">
+        This ensures marketing spend is aligned with both <strong>scale and profitability</strong>.
+      </p>
+    </div>
+  </div>
+
+  <!-- 3. CUSTOMER SEGMENTATION: OPT-IN & SPEND -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">3️⃣ Customer Segmentation and Marketing Opt-In Behaviour</h3>
+
+    <!-- 3a: Average Order Value by Opt-In Status -->
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/aov_opt_in_status.png') }}"
+         alt="Average Order Value by Opt-In Status"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      The customer and transactions tables are merged to build a customer-level dataset. For each customer, the analysis
+      calculates <strong>total revenue</strong>, <strong>total orders</strong> and <strong>average order value (AOV)</strong>,
+      together with demographic attributes and <strong>marketing_opt_in</strong> status.
+    </p>
+
+    <p>
+      At a global level, average order value is compared between customers who <strong>opted in</strong> to marketing and
+      those who <strong>opted out</strong>. The bar chart shows that both segments maintain a relatively high AOV, with
+      only small differences between them.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-warning rounded mt-3">
+      <h6 class="fw-bold text-warning mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        Opt-in status alone does not radically alter the value of a single order. However, this metric does not capture
+        <strong>frequency</strong> or <strong>lifetime spend</strong>. Subsequent analysis shows that opt-in customers
+        typically place more orders and therefore generate higher total revenue over time.
+      </p>
+      <p class="mb-0">
+        AOV is important, but it is the combination of AOV and <strong>order frequency</strong> that defines true customer value.
+      </p>
+    </div>
+
+    <!-- 3b: AOV by Age & Opt-In -->
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/age_opt_in_aov.png') }}"
+         alt="Average Order Value by Age and Opt-In"
+         class="img-fluid rounded shadow my-4">
+
+    <p>
+      The second chart breaks down AOV by <strong>age band</strong> and <strong>opt-in status</strong>. It reveals that
+      some age groups, particularly the <strong>35–44</strong> and <strong>65+</strong> segments, tend to have noticeably
+      higher average order values. In some age groups, opt-in customers spend slightly more; in others, opt-out customers
+      lead.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-info rounded mt-3">
+      <h6 class="fw-bold text-info mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        Customer value is not uniform across age bands. Middle-aged and older customers often have more disposable income,
+        which translates into higher average baskets. Marketing opt-in behaviour interacts with age, suggesting that some
+        demographics are more receptive to ongoing communication than others.
+      </p>
+      <p class="mb-0">
+        This provides a basis for <strong>age-aware segmentation</strong> in campaign planning.
+      </p>
+    </div>
+
+    <!-- 3c: Customer Value Segments vs Opt-In -->
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/value_segment_opt_in.png') }}"
+         alt="Customer Value Segments vs Marketing Opt-In"
+         class="img-fluid rounded shadow my-4">
+
+    <p>
+      To simplify customer value differences, the analysis groups customers into <strong>Low-Value</strong>,
+      <strong>Mid-Value</strong> and <strong>High-Value</strong> segments based on total revenue. Within each group,
+      the proportion of customers who opted in to marketing is compared to those who did not.
+    </p>
+
+    <p>
+      Across all segments, there are more opt-in customers than opt-out customers, and this pattern persists even at the
+      high-value end. This confirms that marketing subscribers are overrepresented among the most commercially valuable
+      customers.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-secondary rounded mt-3">
+      <h6 class="fw-bold text-secondary mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        Marketing opt-in is a strong indicator of <strong>engagement and long-term value</strong>. High-value customers are
+        more likely to be reachable through email or other direct channels, which further amplifies their importance to the
+        business.
+      </p>
+      <p class="mb-0">
+        Ignoring the opt-in segment would mean under-utilising the most responsive subset of the customer base.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Use this segmentation to build a layered CRM strategy:
+      </p>
+      <ul class="mb-1">
+        <li>
+          Develop <strong>high-value subscriber journeys</strong> (VIP content, early access, tailored offers) for
+          high-value opt-in customers.
+        </li>
+        <li>
+          Create <strong>activation campaigns</strong> to encourage mid-value and low-value customers to opt in and increase
+          frequency.
+        </li>
+        <li>
+          Adjust messaging and channel mix by age band to reflect different preferences and price sensitivities.
+        </li>
+      </ul>
+      <p class="mb-0">
+        This approach aligns marketing resources with the customers most likely to drive long-term growth.
+      </p>
+    </div>
+  </div>
+
+  <!-- 4. CUSTOMER INACTIVITY / CHURN -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">4️⃣ Customer Inactivity and Churn Risk</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/customer_inactivity_segments.png') }}"
+         alt="Customer Inactivity Segmentation"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      To assess churn risk, the analysis calculates each customer’s <strong>last order date</strong> and measures how
+      many days have passed since that purchase. Customers are placed into inactivity bands:
+      <em>Active (&lt;1 month)</em>, <em>1–3 months</em>, <em>3–6 months</em>, <em>6–12 months</em>,
+      and <em>Dormant (&gt;1 year)</em>.
+    </p>
+
+    <p>
+      The majority of customers fall into the <strong>6–12 month</strong> and <strong>&gt;1 year</strong> categories,
+      indicating large pools of customers who have lapsed without re-engagement. Only a small proportion are currently
+      active.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-danger rounded mt-3">
+      <h6 class="fw-bold text-danger mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        The business faces significant <strong>latent churn</strong> but also possesses a substantial reactivation
+        opportunity. Inactive customers are familiar with the brand, so re-engaging them is generally cheaper than
+        acquiring entirely new customers.
+      </p>
+      <p class="mb-0">
+        Without structured lifecycle marketing, this potential revenue is left on the table.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Implement an automated <strong>win-back programme</strong> triggered by inactivity thresholds:
+      </p>
+      <ul class="mb-1">
+        <li>At 60–90 days: reminder campaigns with personalised product recommendations.</li>
+        <li>At 6–12 months: stronger incentives (discounts, bundles, free shipping) to re-start purchasing.</li>
+        <li>At &gt;1 year: “We want you back” messaging plus short surveys to identify churn drivers.</li>
+      </ul>
+      <p class="mb-0">
+        Tracking reactivation rate and incremental revenue allows the business to quantify retention ROI.
+      </p>
+    </div>
+  </div>
+
+  <!-- 5. TOP PRODUCTS -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">5️⃣ Top Products by Revenue and Profit</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/top_products_revenue.png') }}"
+         alt="Top Products by Revenue"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      At the product level, the analysis aggregates <strong>total revenue</strong>, <strong>total profit</strong>,
+      <strong>average profit margin</strong>, and <strong>number of orders</strong> per SKU. A small number of products
+      generate a disproportionate share of revenue and profit, functioning as <strong>hero products</strong> within the
+      catalogue.
+    </p>
+
+    <p>
+      Many of these top products also deliver healthy margins, confirming that they are both popular and profitable.
+      They likely act as key entry points for new customers and as repeat purchase drivers for existing ones.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-info rounded mt-3">
+      <h6 class="fw-bold text-info mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        The sales pattern follows a classic <strong>80/20 rule</strong>, where a minority of products account for the
+        majority of revenue. These SKUs are central to brand identity and should be treated as strategic marketing assets.
+      </p>
+      <p class="mb-0">
+        Under-leveraging these hero products in promotional activity would limit revenue potential.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Place hero products at the heart of merchandising and marketing:
+      </p>
+      <ul class="mb-1">
+        <li>Feature them in hero banners, recommendation carousels and category landing pages.</li>
+        <li>Use them in <strong>bundle offers</strong> with complementary products to raise AOV.</li>
+        <li>Highlight strong ratings and reviews on these SKUs as social proof.</li>
+      </ul>
+      <p class="mb-0">
+        At the same time, monitor low-performing SKUs for improvement, repositioning or retirement.
+      </p>
+    </div>
+  </div>
+
+  <!-- 6. TOP CUSTOMERS -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">6️⃣ Top Customers: Revenue and Order Frequency</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/top_customers_revenue_orders.png') }}"
+         alt="Top Customers Revenue and Orders"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      Customers are ranked by <strong>total revenue</strong>, and their <strong>number of orders</strong> is examined
+      alongside this ranking. Some top customers reach high revenue through a smaller number of large purchases, while
+      others place many more orders at slightly lower values.
+    </p>
+
+    <p>
+      This highlights two archetypes: <strong>high-ticket customers</strong> and <strong>high-frequency customers</strong>.
+      Both contribute significantly to revenue but are likely motivated by different things and therefore require
+      different loyalty strategies.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-secondary rounded mt-3">
+      <h6 class="fw-bold text-secondary mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        A uniform approach to all high-value customers would ignore important behavioural differences. Some respond best
+        to exclusivity, others to ongoing rewards and convenience. Differentiated treatment maximises the perceived value
+        of the relationship.
+      </p>
+      <p class="mb-0">
+        Recognising these profiles enables more effective, targeted loyalty design.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Build <strong>tiered loyalty journeys</strong>:
+      </p>
+      <ul class="mb-1">
+        <li>
+          Offer <strong>priority access, exclusive launches and personalised account management</strong> to high-ticket
+          customers.
+        </li>
+        <li>
+          Offer <strong>points, streak rewards and repeat purchase incentives</strong> to high-frequency customers.
+        </li>
+        <li>
+          Use RFM (Recency, Frequency, Monetary) scoring to keep these segments dynamically updated over time.
+        </li>
+      </ul>
+      <p class="mb-0">
+        This creates a loyalty system that feels tailored and builds deeper emotional connection with top customers.
+      </p>
+    </div>
+  </div>
+
+  <!-- 7. CLICKSTREAM BEHAVIOUR: ADD_TO_CART VS CHECKOUT -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">7️⃣ Clickstream Funnel: Add-to-Cart vs Checkout</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/add_to_cart_vs_checkout.png') }}"
+         alt="Add to Cart vs Checkout"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      Clickstream events capture behavioural interactions such as <strong>page_view</strong>, <strong>add_to_cart</strong>
+      and <strong>checkout</strong>. By counting these events per year, the analysis measures how efficiently purchase
+      intent (adding to cart) is translated into actual checkout attempts.
+    </p>
+
+    <p>
+      Most traffic goes to product pages, but there is a big drop from page views → add to cart → checkout. Checkout friction and product-page hesitation are the main weaknesses.
+        Purchase events are missing product IDs, showing a tracking issue. Fixing tracking, improving product pages, and simplifying checkout will significantly increase conversions and revenue.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-dark rounded mt-3">
+      <h6 class="fw-bold text-dark mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        The store is successful at generating <strong>product interest</strong> but loses a significant portion of
+        potential orders between basket and checkout. Typical causes include unexpected fees, lack of payment choice,
+        complex forms or insufficient reassurance about delivery and returns.
+      </p>
+      <p class="mb-0">
+        Improving this final stage of the funnel can increase revenue without increasing traffic or ad spend.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Optimise both the <strong>checkout UX</strong> and <strong>recovery flows</strong>:
+      </p>
+      <ul class="mb-1">
+        <li>Simplify forms, reduce mandatory fields and offer guest checkout.</li>
+        <li>Display shipping cost and estimated delivery clearly before payment.</li>
+        <li>Support multiple payment methods, including local and wallet options.</li>
+        <li>
+          Trigger <strong>abandoned cart reminders</strong> via email or notifications within 1–24 hours, featuring the
+          exact items left behind.
+        </li>
+      </ul>
+      <p class="mb-0">
+        Even modest improvements in cart-to-checkout conversion can translate into substantial incremental revenue.
+      </p>
+    </div>
+  </div>
+
+  <!-- 8. REVIEW RATING DISTRIBUTION -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">8️⃣ Customer Review Ratings Distribution</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/review_rating_distribution.png') }}"
+         alt="Review Ratings Distribution"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      The reviews dataset records 1–5★ ratings for products. Analysing the frequency of each rating reveals a distribution
+      heavily skewed towards <strong>4★ and 5★</strong> reviews, with relatively few 1★ and 2★ ratings and a moderate
+      share of 3★ ratings.
+    </p>
+
+    <p>
+      This pattern implies that most customers are <strong>satisfied or very satisfied</strong> with their purchases. The
+      small minority of negative reviews tend to focus on specific issues such as product defects, shipping delays or
+      mismatched expectations.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-primary rounded mt-3">
+      <h6 class="fw-bold text-primary mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        The skew towards positive ratings confirms that the store delivers a consistently strong experience. This is a
+        crucial foundation for <strong>brand trust</strong> and reduces perceived risk for new customers.
+      </p>
+      <p class="mb-0">
+        At the same time, negative reviews provide highly targeted feedback that can guide operational improvements.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Use ratings as both a <strong>conversion tool</strong> and a <strong>quality signal</strong>:
+      </p>
+      <ul class="mb-1">
+        <li>Showcase strong average ratings and prominent review counts on product pages and category listings.</li>
+        <li>Incorporate review snippets into email campaigns and paid media creatives.</li>
+        <li>Monitor low ratings and respond quickly with customer service and, where appropriate, compensation.</li>
+      </ul>
+      <p class="mb-0">
+        This reinforces confidence for prospective buyers and helps retain existing customers.
+      </p>
+    </div>
+  </div>
+
+  <!-- 9. RATING & SENTIMENT TRENDS -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">9️⃣ Customer Rating Trends and Sentiment Over Time</h3>
+
+    <!-- 9a: Monthly Rating Trend with Rolling Average -->
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/monthly_rating_trend.png') }}"
+         alt="Monthly Ratings with Rolling Average"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      Monthly average ratings are plotted across the entire period, together with a <strong>5-month rolling average</strong>.
+      Individual months fluctuate around the long-term mean, but the rolling line smooths these variations and reveals the
+      underlying trend.
+    </p>
+
+    <p>
+      The smoothed curve shows that average ratings remain consistently high, with only mild dips that are later corrected.
+      This demonstrates robust, sustained customer satisfaction over time rather than temporary spikes.
+    </p>
+
+    <!-- 9b: Yearly Rating Trend -->
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/yearly_rating_trend.png') }}"
+         alt="Yearly Rating Trend"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      A yearly view of average ratings confirms that, despite small year-to-year changes, ratings stay within a narrow band
+      close to <strong>4 out of 5</strong>. There is no evidence of long-term decline.
+    </p>
+
+    <p>
+      This stability suggests that the business is maintaining product quality and service standards even as it grows and
+      changes across the six-year period.
+    </p>
+
+    <!-- 9c: Ratings vs Sentiment -->
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/rating_sentiment_trend.png') }}"
+         alt="Rating and Sentiment Trend"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      To complement numeric ratings, sentiment scores are derived from the text of reviews and plotted alongside average
+      ratings. The sentiment curve broadly follows the same movements as the rating curve – when ratings dip slightly,
+      sentiment also becomes more neutral; when ratings rise, sentiment becomes more positive.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-secondary rounded mt-3">
+      <h6 class="fw-bold text-secondary mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        The combination of monthly, yearly and sentiment trends shows that customer satisfaction is both
+        <strong>high and stable</strong>. Sentiment analysis validates numeric ratings and can act as an early warning
+        system when subtle changes occur.
+      </p>
+      <p class="mb-0">
+        Occasional dips likely correspond to specific operational or product issues, rather than a systemic decline in experience.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Integrate rating and sentiment monitoring into routine business dashboards:
+      </p>
+      <ul class="mb-1">
+        <li>Track monthly rating and sentiment by product category and geography.</li>
+        <li>Investigate sharp deviations promptly, linking them to changes in supply, pricing or service.</li>
+        <li>Highlight consistently high-rated categories in marketing as “customer-loved” ranges.</li>
+      </ul>
+      <p class="mb-0">
+        This closes the loop between customer feedback and ongoing service improvement.
+      </p>
+    </div>
+  </div>
+
+  <!-- 10. PRODUCT RATING VS REVIEW VOLUME -->
+  <div class="mb-5">
+    <h3 class="fw-bold mb-3">🔟 Product Popularity: Ratings vs Number of Reviews</h3>
+    <img src="{{ url_for('static', filename='assets/img/ecommerce/rating_vs_review_volume.png') }}"
+         alt="Rating vs Review Volume"
+         class="img-fluid rounded shadow mb-4">
+
+    <p>
+      Finally, average rating is plotted against <strong>number of reviews</strong> for each product. Products with
+      more reviews represent higher visibility and engagement. Most products cluster between approximately
+      <strong>3.8 and 4.5★</strong>, and many high-review products retain strong ratings.
+    </p>
+
+    <p>
+      Popular items therefore remain well-regarded even under heavy scrutiny, while some lesser-reviewed products may be
+      high quality but lack sufficient social proof to attract hesitant buyers.
+    </p>
+
+    <div class="p-3 bg-light border-start border-4 border-info rounded mt-3">
+      <h6 class="fw-bold text-info mb-2">🧠 Insight</h6>
+      <p class="mb-1">
+        Reviews play a dual role: they reflect popularity and actively contribute to it. High-review, high-rating products
+        form a set of <strong>trusted best-sellers</strong>, whereas low-review products require deliberate support to
+        gain momentum.
+      </p>
+      <p class="mb-0">
+        Combining rating level with review count allows the business to prioritise products that are both reliable and
+        influential in the catalogue.
+      </p>
+    </div>
+
+    <div class="p-3 bg-white border-start border-4 border-success rounded mt-3">
+      <h6 class="fw-bold text-success mb-2">🎯 Recommendation</h6>
+      <p class="mb-1">
+        Use the relationship between ratings and review volume to guide merchandising decisions:
+      </p>
+      <ul class="mb-1">
+        <li>Label high-rating, high-review products as <strong>“Top Rated”</strong> or <strong>“Most Loved”</strong>.</li>
+        <li>Promote low-review but high-rating products as <strong>“Hidden Gems”</strong> to stimulate discovery.</li>
+        <li>Encourage early buyers of new items to leave reviews via follow-up emails and in-app prompts.</li>
+      </ul>
+      <p class="mb-0">
+        This strengthens the review flywheel and builds trust across the entire product range.
+      </p>
+    </div>
+  </div>
+
+  <!-- OVERALL CONCLUSION -->
+  <div class="p-5 bg-light rounded-4 shadow-sm mt-5 fade-in">
+    <h3 class="fw-bold mb-3 text-dark">📈 Overall Conclusion</h3>
+
+    <p class="text-muted">
+      This E-Commerce marketing analytics project demonstrates how integrated data from <strong>transactions</strong>,
+      <strong>clickstream behaviour</strong> and <strong>customer reviews</strong> can be transformed into clear,
+      actionable insights. The business exhibits strong fundamentals: stable revenue and margins, high overall satisfaction,
+      valuable hero products and a core of loyal, high-value customers.
+    </p>
+
+    <p class="text-muted">
+      At the same time, the analysis reveals significant opportunities:
+    </p>
+    <ul class="text-start mt-2">
+      <li><strong>Retention:</strong> large pools of inactive customers can be reactivated through structured lifecycle campaigns.</li>
+      <li><strong>Funnel optimisation:</strong> improving cart-to-checkout conversion offers immediate revenue upside.</li>
+      <li><strong>Personalisation:</strong> marketing opt-in and behavioural segments support tailored CRM journeys.</li>
+      <li><strong>Geo and product focus:</strong> targeted emphasis on high-margin countries and hero products amplifies ROI.</li>
+      <li><strong>Feedback-driven decisions:</strong> ratings and sentiment trends provide continuous input for product and service improvement.</li>
+    </ul>
+
+    <p class="mt-3 mb-0 text-muted">
+      <em>
+        Overall, this case study illustrates how data analysis can move beyond descriptive reporting to inform
+        <strong>strategic marketing decisions</strong>. It connects customer behaviour with practical growth strategies
+        in a real-world E-Commerce context.
+      </em>
+    </p>
+  </div>
+
+  <!-- BACK TO HOME -->
+  <div class="text-center mt-5">
+    <a href="{{ url_for('index') }}" class="btn btn-outline-dark px-4 py-2 fw-semibold rounded-pill">
+      ← Back to Home Page
+    </a>
+  </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Devistar Wire Company System | Enyi Grace{% endblock %}
+
+{% block content %}
+
+<!-- ✅ HERO SECTION -->
+<section class="project-hero text-center text-white d-flex align-items-center justify-content-center"
+         style="
+           min-height: 75vh;  /* ✅ Matches other hero heights */
+           background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                       url('{{ url_for('static', filename='assets/img/devistar/devistar_banner.jpg') }}') center/cover no-repeat;
+         ">
+  <div class="container py-5">
+    <h1 class="display-4 fw-bold mb-3">📘 Devistar Wire Company Database System</h1>
+    <p class="lead mx-auto" style="max-width: 800px;">
+      Designing a secure, role-based business information system for a multi-branch wire manufacturer —
+      integrating automation, analytics, and intelligent data management.
+    </p>
+  </div>
+</section>
+
+<!-- PROJECT OVERVIEW -->
+<section class="container py-5">
+  <h3 class="fw-bold mb-3">🏢 Project Overview</h3>
+  <p>
+    This project involved designing and implementing a <strong>role-based business information system</strong>
+    in Microsoft Access for <strong>Devistar Wire Company</strong>, a manufacturing and distribution firm in Nigeria.
+    The system centralizes operations such as copper sourcing, coating imports, semi-finished production, inventory management, and branch-level sales reporting.
+  </p>
+
+  <p>
+    Previously, the company relied on spreadsheets that caused inconsistencies and inefficiencies.
+    This new system introduced secure authentication, user-specific dashboards, and automated reports for customers, employees, and managers.
+  </p>
+</section>
+
+<!-- SYSTEM FEATURES -->
+<section class="container py-4">
+  <h3 class="fw-bold mb-3">💡 System Features & Design</h3>
+  <ol>
+    <li><strong>Role-Based Access:</strong> Login authentication (via <code>LoginTbl</code>) assigns access to Customers, Employees, or Managers with DLookup-based redirection.</li>
+    <li><strong>Database Architecture:</strong> UML Entity-Relationship Diagram (ERD) linking all core tables with referential integrity across customers, products, and orders.</li>
+    <li><strong>Operational Workflow:</strong> Tracks copper sourcing, coating imports, production batches, and finished goods sales per branch.</li>
+    <li><strong>User Interfaces:</strong> Role-specific dashboards for customers, employees, and managers with dynamic form visibility and real-time data validation.</li>
+    <li><strong>Automation:</strong> VBA scripts automate validation, conditional formatting, and live calculations (e.g., low stock alerts).</li>
+    <li><strong>Reporting:</strong> Parameterized queries and printable reports filtered by branch, customer, or date — supporting informed decisions.</li>
+  </ol>
+</section>
+
+<!-- REFLECTION -->
+<section class="container py-4">
+  <h3 class="fw-bold mb-3">🧠 Reflection on Learning</h3>
+  <p>
+    Using Gibbs’ Reflective Cycle, I learned how to bridge theoretical database principles with practical usability.
+    Overcoming challenges in VBA scripting, relationship design, and interface logic deepened my confidence in developing
+    professional-grade business systems.
+  </p>
+  <p>
+    This project also enhanced my skills in <strong>VBA automation, normalization, and user experience design</strong> —
+    balancing technical precision with real-world accessibility.
+  </p>
+</section>
+
+<!-- ✅ PROJECT OUTCOME SECTION -->
+<section class="container py-5">
+  <h3 class="fw-bold mb-4">🏁 Project Outcome</h3>
+
+  <p>
+    The completed system successfully replaced manual spreadsheets with a <strong>centralized, secure, and automated database platform</strong>.
+    It improved data visibility, reduced human error, and enabled real-time reporting for better decision-making.
+    Future updates will introduce <em>audit logs</em>, <em>backup functionality</em>, and <em>session-based filtering</em> to enhance scalability and traceability.
+  </p>
+
+  <!-- Download Buttons -->
+  <div class="mt-4">
+    <a href="{{ url_for('download', filename='Creating System database for devistar wire company.docx') }}"
+       class="btn btn-primary me-3" download>
+      📎 Download Full Project Report <small class="text-light">(DOCX, 2.3 MB)</small>
+    </a>
+
+    <a href="{{ url_for('download', filename='Devistar Database assignment22.accdb') }}"
+       class="btn btn-outline-primary" download>
+      💾 Download Full Database <small>(ACCDB, 12.5 MB)</small>
+    </a>
+  </div>
+
+  <!-- Important Note -->
+  <div class="alert alert-info mt-5 shadow-sm" role="alert">
+    <h5 class="fw-bold mb-2">💡 Important Notes</h5>
+    <ul class="mb-0 text-start">
+      <li>
+        To explore the full functionality, open the database in <strong>Microsoft Access (Windows only)</strong>.
+        <span class="text-danger fw-semibold">Note:</span> Microsoft Access <strong>does not run on macOS or iOS</strong> systems.
+      </li>
+      <li class="mt-2">
+        Login credentials for <em>Manager</em>, <em>Customer</em>, and <em>Employee</em> dashboards are listed in the full report.
+      </li>
+      <li class="mt-2">
+        Alternatively, you can <strong>create your own login</strong> using the Register button within the system to test all roles independently.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- BACK TO PROJECTS -->
+<div class="text-center my-5">
+  <a href="{{ url_for('projects') }}" class="btn btn-outline-dark px-4 py-2 rounded-pill">
+    ← Back to Projects
+  </a>
+</div>
+
+{% endblock %}
